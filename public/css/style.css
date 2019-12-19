@@ -1,0 +1,75 @@
+* {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.main-nav {
+    background-color: #fdffff !important;
+}
+.main-nav a {
+    font-size: 20px;
+}
+.main-nav a:hover {
+    text-decoration: none;
+    color: #ffa975 !important;
+}
+.main-logo {
+    font-size: 40px !important;
+}
+.d,
+.sub {
+    color: #e8876b;
+}
+.sub {
+    font-size: 15px;
+}
+.ative {
+    color: #ffa975 !important;
+}
+.c-btn {
+    background: #e8876b;
+    color: #fdffff;
+}
+.c-btn:hover {
+    background-color: #ffa975 !important;
+    color: #fdffff !important;
+}
+.slidey {
+    height: 85vh;
+    widows: 80% !important;
+    filter: blur(2px);
+}
+.main-form {
+    border-radius: 8px;
+    background: none;
+    z-index: 3;
+    left: 15%;
+    top: 15%;
+
+    padding: 10px;
+}
+.regi {
+    color: white;
+}
+.regi:hover {
+    text-decoration: none;
+    color: #ffa975;
+}
+.acttive {
+    background-color: #ffa975 !important;
+}
+footer {
+    background-image: url("../pics/slides/architecture-auto-automobiles-bridge-210182.jpg") !important;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.footer-form {
+    background-color: rgba(255, 255, 255, 0.4) !important;
+    border-radius: 8px;
+    background: none;
+
+    padding: 10px;
+}
+.linc:hover {
+    background-color: #fdffff !important;
+    color: #ffa975 !important;
+    font-weight: bold !important;
+}
