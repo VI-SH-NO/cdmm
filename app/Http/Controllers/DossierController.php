@@ -34,28 +34,13 @@ class DossierController extends Controller
         if (is_null($dossier))
             return view('client', compact('flag', 'state', 'dossier', 'msg'));
 
-        if ($this->checkMatricule($request->matricule, $dossier->matricule)) {
-            if ($dossier->date_expertise) {
-                $flag = true;
-                if ($dossier->date_devis) {
-                    if ($dossier->date_accord) {
-                        if ($dossier->date_rapport && $dossier->date_apres && $dossier->date_facture) {
-                            $state = 'fifth';
-                        } else {
-                            $state = 'fourth';
-                        }
-                    } else {
-                        $state = 'third';
-                    }
-                } else {
-                    $state = 'second';
-                }
-            } else {
-                $flag = false;
-                return view('client', compact('flag', 'state', 'dossier'))->with('msg', 'you dont have access');
-            }
-        }
-        return view('client', compact('flag', 'state', 'dossier'));
+        if (!$this->checkMatricule($request->matricule, $dossier->matricule))
+            return view('client', compact('flag', 'state', 'dossier'));
+
+        if (!$dossier->date_expertise)
+            return view('client', compact('flag', 'state', 'dossier'))->with('msg', 'you dont have access');
+
+        return $this->getStatus($dossier);
     }
 
 
@@ -103,5 +88,38 @@ class DossierController extends Controller
                 break;
         }
         return $db;
+    }
+
+    /**
+     * @param $dossier
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getStatus($dossier)
+    {
+        $flag = true;
+        $state = 'second';
+
+        if ($dossier->date_devis)
+            $state = $this->getState($dossier);
+
+        return view('client', compact('flag', 'state', 'dossier'));
+    }
+
+    /**
+     * @param $dossier
+     * @return string
+     */
+    public function getState($dossier): string
+    {
+        if ($dossier->date_accord) {
+            if ($dossier->date_rapport && $dossier->date_apres && $dossier->date_facture) {
+                $state = 'fifth';
+            } else {
+                $state = 'fourth';
+            }
+        } else {
+            $state = 'third';
+        }
+        return $state;
     }
 }

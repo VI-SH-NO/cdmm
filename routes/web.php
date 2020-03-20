@@ -14,12 +14,12 @@
 use App\Dossier;
 use Illuminate\Support\Facades\DB;
 
+Auth::routes();
 Route::get('/', 'IndexController@index')->name('Home');
 Route::get('/entreprise', 'IndexController@entreprise')->name('Entreprise');
 Route::get('/support', 'IndexController@support')->name('Support');
 Route::get('/about', 'IndexController@about')->name('About');
 Route::get('/admin', 'AdminController@index');
-Auth::routes();
 Route::resource('article', 'ArticaleController');
 Route::post('/addImage', 'ArticaleController@addImage')->name('addImage');
 Route::get('/home', 'HomeController@index');
